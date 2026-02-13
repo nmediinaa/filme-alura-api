@@ -4,6 +4,8 @@ namespace WebApplication1.Models;
 
 public class Filme
 {
+    public int Id { get; set; }
+    
     [Required(ErrorMessage = "O titulo do filme é obrigatório")]
     public string Title { get; set; }
     
