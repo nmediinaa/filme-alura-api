@@ -18,6 +18,10 @@ public class FilmeController : ControllerBase
         Console.WriteLine(filme.Diretor);
     }
     
-    
+    [HttpGet]
+    public IEnumerable<Filme> GetFilmes()
+    {
+        return _filmesList;
+    }
     
 }
