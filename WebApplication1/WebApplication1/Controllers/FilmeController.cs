@@ -22,9 +22,9 @@ public class FilmeController : ControllerBase
     }
     
     [HttpGet]
-    public IEnumerable<Filme> GetAllFilmes()
+    public IEnumerable<Filme> GetAllFilmes([FromQuery] int skip = 0, [FromQuery] int take = 10)
     {
-        return _filmesList;
+        return _filmesList.Skip(skip).Take(take);
     }
 
     [HttpGet("{id}")]
