@@ -2,7 +2,7 @@
 
 namespace WebApplication1.DTOs;
 
-public class CreateFilmeDto
+public class UpdateFilmeDto
 {
 
     [Required(ErrorMessage = "O titulo do filme é obrigatório")]
