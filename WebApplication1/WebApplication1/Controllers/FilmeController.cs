@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using Microsoft.AspNetCore.JsonPatch;
 using Microsoft.AspNetCore.Mvc;
 using WebApplication1.Data;
 using WebApplication1.DTOs;
@@ -49,6 +50,27 @@ public class FilmeController : ControllerBase
         var filme = _context.Filmes.FirstOrDefault(f => f.Id == id);
         if (filme == null) return NotFound();
         _mapper.Map(filmeDto, filme);
+        _context.SaveChanges();
+        return NoContent();
+    }
+    
+    [HttpPatch("{id}")]
+    public IActionResult AtualizaFilmeParcial(int id, 
+        [FromBody] JsonPatchDocument<UpdateFilmeDto> patchDoc )
+    {
+        var filme = _context.Filmes.FirstOrDefault(f => f.Id == id);
+        if (filme == null) return NotFound();
+        
+        var filmeParaAtualizar = _mapper.Map<UpdateFilmeDto>(filme);
+        patchDoc.ApplyTo(filmeParaAtualizar, ModelState);
+
+        if (!TryValidateModel(filmeParaAtualizar))
+        {
+            return ValidationProblem(ModelState);
+        }
+        
+        
+        _mapper.Map(filmeParaAtualizar, filme);
         _context.SaveChanges();
         return NoContent();
     }
