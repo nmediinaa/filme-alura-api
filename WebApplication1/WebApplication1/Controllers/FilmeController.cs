@@ -58,6 +58,7 @@ public class FilmeController : ControllerBase
     {
         var filme = _context.Filmes.FirstOrDefault(f => f.Id == id);
         if (filme == null) return NotFound();
+        //Aqui dessa formar utilizamos o AutoMapper para atualizar sobreescrever algo
         _mapper.Map(filmeDto, filme);
         _context.SaveChanges();
         return NoContent();
