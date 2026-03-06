@@ -42,7 +42,7 @@ public class EnderecoController : Controller
     {
         var endereco = _context.Endereco.FirstOrDefault(e => e.Id == id);
         if (endereco == null) return NotFound();
-        return Ok( _mapper.Map<ReadEnderecoDto>(endereco););
+        return Ok( _mapper.Map<ReadEnderecoDto>(endereco));
     }
 
     [HttpPut("{id}")]
