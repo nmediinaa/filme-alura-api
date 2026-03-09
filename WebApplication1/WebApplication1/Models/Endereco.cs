@@ -13,4 +13,6 @@ public class Endereco
 
     [Range(1, int.MaxValue, ErrorMessage = "O numero deve ser positivo")]
     public int Numero{ get; set; }
+    
+    public virtual Cinema Cinema{get;set;}
 }

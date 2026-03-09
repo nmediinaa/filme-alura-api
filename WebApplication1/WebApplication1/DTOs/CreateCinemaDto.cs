@@ -7,4 +7,6 @@ public class CreateCinemaDto
     [Required(ErrorMessage = "O campo nome é obrigatorio")]
     [MaxLength(50,ErrorMessage = "O nome do cinema deve ter no maximo 50 caracteres!")]
     public string Nome { get; set; }
+
+    public int EnderecoId { get; set; }
 }
