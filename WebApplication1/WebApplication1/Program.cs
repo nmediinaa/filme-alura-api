@@ -13,7 +13,7 @@ builder.Services.AddControllers().AddNewtonsoftJson();
 
 // Add services to the container.
 builder.Services.AddDbContext<FilmeContext>(options =>
-        options.UseMySql(connectionString, ServerVersion.AutoDetect(connectionString)));
+        options.UseLazyLoadingProxies().UseMySql(connectionString, ServerVersion.AutoDetect(connectionString)));
 
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
