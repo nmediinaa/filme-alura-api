@@ -20,4 +20,6 @@ public class Filme
     
     [Required(ErrorMessage = "O Diretor do filme é obrigatório")]
     public string Diretor { get; set; }
+
+    public virtual ICollection<Sessao> Sessoes { get; set; }
 }
