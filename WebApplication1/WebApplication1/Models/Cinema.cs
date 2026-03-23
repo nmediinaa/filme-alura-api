@@ -17,4 +17,6 @@ public class Cinema
     
     public virtual Endereco Endereco { get; set; }
 
+    public virtual ICollection<Sessao> sessoes {get; set; }
+
 }

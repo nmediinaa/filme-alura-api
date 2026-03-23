@@ -1,4 +1,6 @@
-﻿namespace WebApplication1.DTOs;
+﻿using WebApplication1.Models;
+
+namespace WebApplication1.DTOs;
 
 public class ReadFilmeDto
 {
@@ -12,4 +14,6 @@ public class ReadFilmeDto
     public string Diretor { get; set; }
 
     public DateTime DataConsulta { get; set; } = DateTime.Now;
+
+    public ICollection<ReadSessaoDto> sessoes { get; set; }   
 }

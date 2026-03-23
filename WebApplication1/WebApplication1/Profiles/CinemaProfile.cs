@@ -14,6 +14,10 @@ public class CinemaProfile : Profile
             .ForMember(dto => dto.Endereco,//Aqui estamos mapeando para o membro ReadCinemaDto,
                                                   //um ReadEnderecoDto
                 opt => 
-                    opt.MapFrom(cinema => cinema.Endereco));
+                    opt.MapFrom(cinema => cinema.Endereco))
+            .ForMember(dto => dto.sessoes,//Aqui estamos mapeando para o membro ReadCinemaDto,
+            //um ReadEnderecoDto
+            opt => 
+                opt.MapFrom(cinema => cinema.sessoes));
     }
 }
