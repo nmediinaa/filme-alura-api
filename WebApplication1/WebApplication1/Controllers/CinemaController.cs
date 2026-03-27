@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using WebApplication1.Data;
 using WebApplication1.DTOs;
 using WebApplication1.Models;
@@ -30,12 +31,16 @@ public class CinemaController : ControllerBase
     }
 
     [HttpGet]
-    public IEnumerable<ReadCinemaDto> GetAllCinemas([FromQuery] int skip = 0, [FromQuery] int take = 10)
+    public IEnumerable<ReadCinemaDto> GetAllCinemas([FromQuery] int? enderecoId = null)
     {
-        var cinemas = _context.Cinema.Skip(skip).Take(take).ToList();
-            
-        var cinemasDto = _mapper.Map<IEnumerable<ReadCinemaDto>>(cinemas); 
-        return cinemasDto;
+        if (enderecoId == null)
+        {
+            return _mapper.Map<IEnumerable<ReadCinemaDto>>(_context.Cinema.ToList()); 
+        }
+
+        return _mapper.Map<IEnumerable<ReadCinemaDto>>
+        (_context.Cinema
+            .FromSqlRaw($"SELECT * FROM Cinema c WHERE c.EnderecoId = {enderecoId}").ToList());
     }
 
     [HttpGet("{id}")]
